@@ -31,8 +31,6 @@ function mostrar(lista) {
 
 document.getElementById("buscador").addEventListener("input", buscar);
 
-document.getElementById("buscador").addEventListener("input", buscar);
-
 function buscar() {
   const id = document.getElementById("buscador").value.trim();
   if (id === "") {
