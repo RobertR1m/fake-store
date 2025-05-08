@@ -31,10 +31,12 @@ function mostrar(lista) {
 
 document.getElementById("buscador").addEventListener("input", buscar);
 
+document.getElementById("buscador").addEventListener("input", buscar);
+
 function buscar() {
   const id = document.getElementById("buscador").value.trim();
   if (id === "") {
-    mostrar([]);
+    contenedor.innerHTML = "";
     return;
   }
 
@@ -42,7 +44,5 @@ function buscar() {
     item.title.toLowerCase().includes(id.toLowerCase())
   );
 
-  const resultados = [...productosFiltrados];
-
-  mostrar(resultados);
+  mostrar(productosFiltrados);
 }
