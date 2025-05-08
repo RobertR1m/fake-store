@@ -28,3 +28,19 @@ function mostrar(lista) {
 });
   contenedor.innerHTML = html;
 }
+
+document.getElementById("buscador").addEventListener("input", buscar);
+
+function buscar() {
+  const id = document.getElementById("buscador").value.trim();
+  if (id === "") {
+    contenedor.innerHTML = "";
+    return;
+  }
+
+  const productosFiltrados = productos.filter(item =>
+    item.title.toLowerCase().includes(id.toLowerCase())
+  );
+
+  mostrar(productosFiltrados);
+}
