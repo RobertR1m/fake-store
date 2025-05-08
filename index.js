@@ -16,8 +16,29 @@ function Usuarios() {
     .then(response => response.json())
     .then(data => {
       usuarios = data;
-      mostrar(usuarios);
+      mostrar(usuarios, "usuario");
     });
+}
+
+document.getElementById("buscador").addEventListener("input", buscar);
+function buscar() {
+  const id = document.getElementById("buscador").value.trim();
+  if (id === "") {
+    mostrar([]);
+    return;
+  }
+
+  const productosFiltrados = productos.filter(item =>
+    item.title.toLowerCase().includes(id.toLowerCase())
+  );
+
+  const usuariosFiltrados = usuarios.filter(item =>
+    (item.name.firstname + " " + item.name.lastname).toLowerCase().includes(id.toLowerCase())
+  );
+
+  const resultados = [...productosFiltrados, ...usuariosFiltrados];
+
+  mostrar(resultados);
 }
 
 function mostrar(lista) {
@@ -49,18 +70,3 @@ function mostrar(lista) {
 }
 
 
-document.getElementById("buscador").addEventListener("input", buscar);
-
-function buscar() {
-  const id = document.getElementById("buscador").value.trim();
-  if (id === "") {
-    contenedor.innerHTML = "";
-    return;
-  }
-
-  const productosFiltrados = productos.filter(item =>
-    item.title.toLowerCase().includes(id.toLowerCase())
-  );
-
-  mostrar(productosFiltrados);
-}
